@@ -9,26 +9,21 @@
     <!-- Styles -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </head>
 <body>
 
     <div class="container">
 
-        <div class="row mt-5">
 
-            <div class="mb-2 text-center">
-                <h1 class="my-auto">Customers</h1>
-            </div>
-
-            <div class="row col-4 mx-auto">
-                <a href="{{route('customers.create')}}">
-                    <button class="btn btn-success w-100">Add Customer</button>
-                </a>
-            </div>
+        <div class="row mt-5 col-4 mx-auto">
+            <a href="{{route('customers.create')}}">
+                <button class="btn btn-success w-100">Add Customer</button>
+            </a>
         </div>
 
         <div>
-            @if(count($customers)>0)
+            @if($customers->count())
                 <table class="table">
                     <thead>
                     <tr>

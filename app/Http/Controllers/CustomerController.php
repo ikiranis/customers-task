@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CustomerFormRequest;
 use App\Models\Customer;
 use Illuminate\Http\Request;
 
@@ -35,9 +36,9 @@ class CustomerController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function store(Request $request)
+    public function store(CustomerFormRequest $request)
     {
-//        $validatedData = $request->validated();
+        $validatedData = $request->validated();
 
         $input = $request->all();
 
@@ -77,9 +78,9 @@ class CustomerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function update(Request $request, $id)
+    public function update(CustomerFormRequest $request, $id)
     {
-//        $validatedData = $request->validated();
+        $validatedData = $request->validated();
 
         $input = $request->all();
 
