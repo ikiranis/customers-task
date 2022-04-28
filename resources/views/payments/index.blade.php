@@ -33,6 +33,12 @@
                     <h4 class="text-end">Lifetime revenue: <strong>{{ $customer->payments()->sum('amount') }}</strong></h4>
                 </div>
 
+                <div class="row mt-5 col-4 mx-auto">
+                    <a href="{{route('customers.index')}}">
+                        <button class="btn btn-info w-100">Return to customers index</button>
+                    </a>
+                </div>
+
             @else
                 <h4>Payments not found</h4>
             @endif

@@ -4,7 +4,6 @@
 
     <div class="container">
 
-
         <div class="row mt-5 col-4 mx-auto">
             <a href="{{route('customers.create')}}">
                 <button class="btn btn-success w-100">Add Customer</button>
