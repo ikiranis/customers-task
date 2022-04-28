@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\CustomerFormRequest;
 use App\Models\Customer;
-use Illuminate\Http\Request;
 
 class CustomerController extends Controller
 {
@@ -42,7 +41,12 @@ class CustomerController extends Controller
 
         $input = $request->all();
 
-        $customer = Customer::create($input);
+        try {
+            $customer = Customer::create($input);
+        } catch (\Exception $e) {
+            return redirect(route('customers.create'))
+                ->withErrors(['Cant create the customer ' . $e->getMessage()]);
+        }
 
         return redirect(route('customers.index'));
     }
@@ -62,7 +66,7 @@ class CustomerController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function edit($id)
     {
@@ -86,7 +90,12 @@ class CustomerController extends Controller
 
         $customer = Customer::findOrFail($id);
 
-        $customer->update($input);
+        try {
+            $customer->update($input);
+        } catch (\Exception $e) {
+            return redirect(route('customers.create'))
+                ->withErrors(['Cant update the customer ' . $e->getMessage()]);
+        }
 
         return redirect(route('customers.index'));
     }

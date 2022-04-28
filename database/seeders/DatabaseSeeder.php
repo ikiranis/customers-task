@@ -2,11 +2,18 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Customer;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
 {
+    private $customers = [
+        ['name' => 'John Doe', 'email' => 'john.doe@example.com'],
+        ['name' => 'Nick Patel', 'email' => 'nick.patel@example.com'],
+        ['name' => 'Jane Quinn', 'email' => 'jane.quinn@example.com'],
+        ['name' => 'Paul Reily', 'email' => 'paul.reily@example.com']
+    ];
+
     /**
      * Seed the application's database.
      *
@@ -14,6 +21,8 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
+        foreach ($this->customers as $customer) {
+            Customer::factory()->create($customer);
+        }
     }
 }
