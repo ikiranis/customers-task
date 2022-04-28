@@ -30,11 +30,13 @@
                             <td>{{ $customer->name }}</td>
                             <td>{{ $customer->email }}</td>
                             <td class="row">
-                                <div class="col text-center">
-                                    <a href="{{route('customers.show', $customer->id)}}">
-                                        <button type="submit" class="btn btn-sm btn-info">Payments</button>
-                                    </a>
-                                </div>
+                                @if($customer->payments()->count())
+                                    <div class="col text-center">
+                                        <a href="{{route('customers.show', $customer->id)}}">
+                                            <button type="submit" class="btn btn-sm btn-info">Payments</button>
+                                        </a>
+                                    </div>
+                                @endif
 
                                 <div class="col text-center">
                                     <form method="POST" action="{{route('customers.destroy', $customer->id)}}">
