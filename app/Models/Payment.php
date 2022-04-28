@@ -17,6 +17,6 @@ class Payment extends Model
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function customer() {
-        return $this->belongsTo(Customer::class, 'email', 'customer_email');
+        return $this->belongsTo(Customer::class, 'customer_email', 'email');
     }
 }
