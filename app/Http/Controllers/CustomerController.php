@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\CustomerFormRequest;
 use App\Http\Services\SCVService;
 use App\Models\Customer;
+use App\Models\Payment;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Support\Facades\Log;
 
@@ -58,11 +59,14 @@ class CustomerController extends Controller
      * Display the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function show($id)
     {
-        //
+        $customer = Customer::whereId($id)->first();
+        $payments = Payment::whereCustomerEmail($customer->email)->get();
+
+        return view('payments/index', compact('payments', 'customer'));
     }
 
     /**
