@@ -23,11 +23,19 @@
                 <h1 class="my-auto">Customers</h1>
             </div>
 
+            <div class="row col-4 mx-auto">
+                <button class="btn-lg btn-success">Add Customer</button>
+            </div>
+
+
         </div>
 
         <div>
             @foreach($customers as $customer)
-
+                <div>
+                    <span>{{ $customer->name }}</span>
+                    <span>{{ $customer->email }}</span>
+                </div>
             @endforeach
         </div>
 
