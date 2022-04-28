@@ -17,3 +17,5 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [CustomerController::class, 'index'])->name('home');
 
 Route::resource('customers', CustomerController::class);
+
+Route::get('importPayments', [CustomerController::class, 'importPayments'])->name('importPayments');

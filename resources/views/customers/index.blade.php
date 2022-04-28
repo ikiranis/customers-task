@@ -44,6 +44,13 @@
 
                     </tbody>
                 </table>
+
+
+                <div class="row mt-5 col-4 mx-auto">
+                    <a href="{{route('importPayments')}}">
+                        <button class="btn btn-success w-100">Import CSV file</button>
+                    </a>
+                </div>
             @else
                 <h4>Customers not found</h4>
             @endif
