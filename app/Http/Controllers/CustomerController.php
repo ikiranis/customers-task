@@ -64,9 +64,8 @@ class CustomerController extends Controller
     public function show($id)
     {
         $customer = Customer::whereId($id)->first();
-        $payments = Payment::whereCustomerEmail($customer->email)->get();
 
-        return view('payments/index', compact('payments', 'customer'));
+        return view('payments/index', compact('customer'));
     }
 
     /**

@@ -17,6 +17,6 @@ class Customer extends Model
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function payments() {
-        return $this->hasMany(Payment::class, 'customer_mail', 'email');
+        return $this->hasMany(Payment::class, 'customer_email', 'email');
     }
 }

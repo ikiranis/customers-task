@@ -7,7 +7,7 @@
         <h1>{{ $customer->name }}</h1>
 
         <div>
-            @if($payments->count())
+            @if($customer->payments()->count())
                 <table class="table">
                     <thead>
                     <tr>
@@ -18,7 +18,7 @@
                     </thead>
                     <tbody>
 
-                    @foreach($payments as $payment)
+                    @foreach($customer->payments()->get() as $payment)
                         <tr>
                             <td>{{ $payment->customer_email }}</td>
                             <td>{{ $payment->amount }}</td>
@@ -30,7 +30,7 @@
                 </table>
 
                 <div class="row">
-                    <h4 class="text-end">Lifetime revenue: <strong>{{ $payments->sum('amount') }}</strong></h4>
+                    <h4 class="text-end">Lifetime revenue: <strong>{{ $customer->payments()->sum('amount') }}</strong></h4>
                 </div>
 
             @else
