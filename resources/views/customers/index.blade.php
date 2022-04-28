@@ -32,6 +32,7 @@
                 <table class="table">
                     <thead>
                     <tr>
+                        <th scope="col">Id</th>
                         <th scope="col">Name</th>
                         <th scope="col">Email</th>
                     </tr>
@@ -42,8 +43,9 @@
                         <tr>
                             <td><a href="{{route('customers.edit', $customer->id)}}">{{$customer->id}}</a></td>
                             <td>{{ $customer->name }}</td>
+                            <td>{{ $customer->email }}</td>
                             <td>
-                                <form method="POST" action="{{route('customers.destroy', $category->id)}}">
+                                <form method="POST" action="{{route('customers.destroy', $customer->id)}}">
                                     <input name="_method" type="hidden" value="DELETE">
                                     @csrf
 

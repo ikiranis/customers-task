@@ -33,11 +33,17 @@ class CustomerController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function store(Request $request)
     {
-        //
+//        $validatedData = $request->validated();
+
+        $input = $request->all();
+
+        $customer = Customer::create($input);
+
+        return redirect(route('customers.index'));
     }
 
     /**
@@ -59,7 +65,9 @@ class CustomerController extends Controller
      */
     public function edit($id)
     {
-        //
+        $customer = Customer::findOrFail($id);
+
+        return view('customers/edit', compact('customer'));
     }
 
     /**
@@ -67,21 +75,38 @@ class CustomerController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function update(Request $request, $id)
     {
-        //
+//        $validatedData = $request->validated();
+
+        $input = $request->all();
+
+        $customer = Customer::findOrFail($id);
+
+        $customer->update($input);
+
+        return redirect(route('customers.index'));
     }
 
     /**
      * Remove the specified resource from storage.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function destroy($id)
     {
-        //
+        $customer = Customer::whereId($id);
+
+        try {
+            $customer->delete();
+        } catch (\Exception $e) {
+            return redirect(route('customers.index'))
+                ->withErrors(['Cant delete the customer ' . $e->getMessage()]);
+        }
+
+        return redirect(route('customers.index'));
     }
 }
