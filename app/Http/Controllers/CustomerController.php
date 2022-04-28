@@ -16,17 +16,17 @@ class CustomerController extends Controller
     {
         $customers = Customer::all();
 
-        return view('home', compact(['customers']));
+        return view('customers.index', compact(['customers']));
     }
 
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function create()
     {
-        //
+        return view('customers.create');
     }
 
     /**
