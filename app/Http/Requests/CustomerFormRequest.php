@@ -2,7 +2,9 @@
 
 namespace App\Http\Requests;
 
+use App\Models\Customer;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class CustomerFormRequest extends FormRequest
 {
@@ -25,7 +27,7 @@ class CustomerFormRequest extends FormRequest
     {
         return [
             'name' => 'required|max:30',
-            'email' => 'required|unique:customers|max:30|email:rfc,dns'
+            'email' => ['required', Rule::unique('customers')->ignore($this->customer), 'max:30']
         ];
     }
 
