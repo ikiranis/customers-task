@@ -28,21 +28,21 @@
                             <td><a href="{{route('customers.edit', $customer->id)}}">{{$customer->id}}</a></td>
                             <td>{{ $customer->name }}</td>
                             <td>{{ $customer->email }}</td>
-                            <td class="row">
+                            <td class="row text-center">
                                 @if($customer->payments()->count())
-                                    <div class="col text-center">
+                                    <div class="col-6">
                                         <a href="{{route('customers.show', $customer->id)}}">
-                                            <button type="submit" class="btn btn-sm btn-info">Payments</button>
+                                            <button type="submit" class="btn btn-sm btn-info w-100">Payments</button>
                                         </a>
                                     </div>
                                 @endif
 
-                                <div class="col text-center">
+                                <div class="col-6">
                                     <form method="POST" action="{{route('customers.destroy', $customer->id)}}">
                                         <input name="_method" type="hidden" value="DELETE">
                                         @csrf
 
-                                        <button type="submit" class="btn btn-sm btn-danger"
+                                        <button type="submit" class="btn btn-sm btn-danger w-100"
                                                 onclick="return confirm('Are you sure to delete the record;')">
                                             Delete
                                         </button>
