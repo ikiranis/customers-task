@@ -15,6 +15,7 @@ namespace App\Http\Services;
 
 use App\Jobs\ImportCSV;
 use App\Models\Payment;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 
 class ImportCSVService
@@ -29,13 +30,24 @@ class ImportCSVService
         $this->file = $file;
     }
 
+    /**
+     * @throws \Exception
+     */
     public function import() : void {
-        $stream = Storage::disk('public')->readStream($this->file);
+        if(Storage::disk('public')->exists($this->file)) {
+            try {
+                $stream = Storage::disk('public')->readStream($this->file);
+            } catch (\Exception $e) {
+                throw new \Exception("Problem with file");
+            }
 
-        $firstLine = fgets($stream);
+            $firstLine = fgets($stream);
 
-        while (!feof($stream)) {
-            ImportCSV::dispatch(fgets($stream));
+            while (!feof($stream)) {
+                ImportCSV::dispatch(fgets($stream));
+            }
+        } else {
+            throw new \Exception("File doesn't exist");
         }
 
     }

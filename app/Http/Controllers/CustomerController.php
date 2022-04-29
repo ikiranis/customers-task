@@ -6,6 +6,7 @@ use App\Http\Requests\CustomerFormRequest;
 use App\Http\Services\ImportCSVService;
 use App\Models\Customer;
 use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Support\Facades\Log;
 
 class CustomerController extends Controller
 {
@@ -116,7 +117,7 @@ class CustomerController extends Controller
         try {
             $customer->delete();
         } catch (\Exception $e) {
-            return redirect(route('customers.index'))
+            return redirect(route('index'))
                 ->withErrors(['Cant delete the customer ' . $e->getMessage()]);
         }
 
@@ -129,9 +130,14 @@ class CustomerController extends Controller
      * @return Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function importPayments() {
-        $importSCV = new ImportCSVService('file.scv');
-        $importSCV->import();
+        try {
+            $importSCV = new ImportCSVService('file.scv');
+            $importSCV->import();
 
-        return redirect()->back()->with('message', 'Importing CSV file. Refresh page after a while to see the changes!');
+            return redirect()->back()->with('message', 'Importing CSV file. Refresh page after a while to see the changes!');
+        } catch (\Exception $e) {
+            return redirect()->back()->with('message', $e->getMessage());
+        }
+
     }
 }

@@ -26,7 +26,7 @@ class CustomerFormRequest extends FormRequest
     {
         return [
             'name' => 'required|max:30',
-            'email' => ['required', Rule::unique('customers')->ignore($this->customer), 'max:30']
+            'email' => ['required', Rule::unique('customers')->ignore($this->customer), 'max:30', 'email']
         ];
     }
 
