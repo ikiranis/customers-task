@@ -40,14 +40,14 @@
                             <td class="text-center">{{ $customer->payments()->count() }}</td>
                             <td class="row text-center">
                                 @if($customer->payments()->count())
-                                    <div class="col-6">
+                                    <div class="col">
                                         <a href="{{route('customers.show', $customer->id)}}">
                                             <button type="submit" class="btn btn-sm btn-info w-100">Payments</button>
                                         </a>
                                     </div>
                                 @endif
 
-                                <div class="col-6">
+                                <div class="col">
                                     <form method="POST" action="{{route('customers.destroy', $customer->id)}}">
                                         <input name="_method" type="hidden" value="DELETE">
                                         @csrf

@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CustomerFormRequest;
-use App\Http\Services\ExportCustomers;
+use App\Http\Services\ExportCustomersService;
+use App\Http\Services\ImportCSVService;
 use App\Http\Services\SCVService;
 use App\Models\Customer;
 use Illuminate\Contracts\Foundation\Application;
@@ -127,7 +128,7 @@ class CustomerController extends Controller
 
 
     public function importPayments() {
-        $importSCV = new SCVService();
+        $importSCV = new ImportCSVService();
         $importSCV->import();
     }
 }

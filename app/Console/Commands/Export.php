@@ -2,7 +2,7 @@
 
 namespace App\Console\Commands;
 
-use App\Http\Services\ExportCustomers;
+use App\Http\Services\ExportCustomersService;
 use Illuminate\Console\Command;
 
 class Export extends Command
@@ -28,7 +28,7 @@ class Export extends Command
      */
     public function handle()
     {
-        $export = new ExportCustomers($this->argument('file') . '.csv');
+        $export = new ExportCustomersService($this->argument('file') . '.csv');
         $export->export();
 
         return 0;
