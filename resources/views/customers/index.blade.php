@@ -72,6 +72,12 @@
                         <button class="btn btn-warning w-100">Import CSV file</button>
                     </a>
                 </div>
+
+                <div class="row mt-5 col-4 mx-auto">
+                    <a href="{{route('exportCustomers')}}">
+                        <button class="btn btn-warning w-100">Export to CSV file</button>
+                    </a>
+                </div>
             @else
                 <h4>Customers not found</h4>
             @endif

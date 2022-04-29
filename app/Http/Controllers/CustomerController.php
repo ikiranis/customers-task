@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CustomerFormRequest;
+use App\Http\Services\ExportCustomers;
 use App\Http\Services\SCVService;
 use App\Models\Customer;
-use App\Models\Payment;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Support\Facades\Log;
 
@@ -125,8 +125,16 @@ class CustomerController extends Controller
         return redirect(route('customers.index'));
     }
 
+
     public function importPayments() {
+        Log::error("IMPOOOORT");
         $importSCV = new SCVService();
         $importSCV->import();
+    }
+
+    public function exportCustomers() {
+        Log::error("HELLOO");
+        $export = new ExportCustomers('export.csv');
+        $export->export();
     }
 }

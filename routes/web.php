@@ -14,8 +14,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/{filter?}', [CustomerController::class, 'index'])->name('index');
+Route::get('/', function () {
+    return redirect('/customers/');
+});
 
-Route::resource('customers', CustomerController::class)->except('index');
-
+Route::get('/customers/{filter?}', [CustomerController::class, 'index'])->name('index');
 Route::get('importPayments', [CustomerController::class, 'importPayments'])->name('importPayments');
+Route::get('exportCustomers', [CustomerController::class, 'exportCustomers'])->name('exportCustomers');
+
+
+Route::resource('customers', CustomerController::class);
+
