@@ -1,4 +1,6 @@
 # Customers app
+![2022-04-29_06-54](https://user-images.githubusercontent.com/50238022/165883173-d007f746-93a6-4c1e-a88e-2dc8b94adfae.png)
+
 
 ### Installation
 
