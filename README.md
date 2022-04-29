@@ -6,9 +6,9 @@
 
 - Run ``composer install``
 
-- Setup a mysql database and copy .env.example file to .env.
+- Setup a mysql database and copy ``.env.example`` file to ``.env``.
 
-- Set the mysql credential in .env file.
+- Set the mysql credential in ``.env`` file.
 
 You can install mysql with docker (https://github.com/ikiranis/mysql-server-docker)
 
