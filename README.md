@@ -10,7 +10,7 @@
 
 - Set the mysql credential in ``.env`` file.
 
-You can install mysql with docker (https://github.com/ikiranis/mysql-server-docker)
+You can install mysql on docker (https://github.com/ikiranis/mysql-server-docker)
 
 - Give write privileges to ``storage`` folder
 
@@ -20,9 +20,9 @@ You can install mysql with docker (https://github.com/ikiranis/mysql-server-dock
 php artisan serve
 ```
 
-- CSV file to import, is in ``storage/app/public`` folder.
+- CSV file to import, is in ``storage/app/public`` folder (``file.csv``).
 
-- To export the file, run the following artisan command. Exported CSV file will be stored in the same folder
+- To export customers data, run the following artisan command. Exported CSV file will be stored in the same folder
 
 ```
 php artisan export:customers <filename> (without .csv extension)
