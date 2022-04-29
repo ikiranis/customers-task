@@ -31,7 +31,7 @@ class ExportCustomersService
     public function export() {
         $customers = Customer::all();
 
-        $firstLine = 'Customer email,amount,date';
+        $firstLine = 'Name,Customer email,Lifetime revenue,Total transactions';
 
         Storage::disk('public')->put($this->file, $firstLine);
 
