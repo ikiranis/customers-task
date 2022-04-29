@@ -20,8 +20,6 @@ Route::get('/', function () {
 
 Route::get('/index/{filter?}', [CustomerController::class, 'index'])->name('index');
 Route::get('importPayments', [CustomerController::class, 'importPayments'])->name('importPayments');
-Route::get('exportCustomers', [CustomerController::class, 'exportCustomers'])->name('exportCustomers');
-
 
 Route::resource('customers', CustomerController::class);
 

@@ -130,9 +130,4 @@ class CustomerController extends Controller
         $importSCV = new SCVService();
         $importSCV->import();
     }
-
-    public function exportCustomers() {
-        $export = new ExportCustomers('export.csv');
-        $export->export();
-    }
 }
