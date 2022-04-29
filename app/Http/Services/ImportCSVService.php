@@ -19,7 +19,15 @@ use Illuminate\Support\Facades\Storage;
 
 class ImportCSVService
 {
-    private $file = "file.scv";
+    private $file;
+
+    /**
+     * @param string $file
+     */
+    public function __construct(string $file)
+    {
+        $this->file = $file;
+    }
 
     public function import() : void {
         $stream = Storage::disk('public')->readStream($this->file);

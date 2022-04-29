@@ -2,6 +2,12 @@
 
 @section('content')
 
+    @if(session()->has('message'))
+        <div class="alert alert-success">
+            {{ session()->get('message') }}
+        </div>
+    @endif
+
     <div class="container">
         <div class="row mt-5 col-4 mx-auto">
             <a href="{{route('customers.create')}}">
@@ -9,9 +15,9 @@
             </a>
         </div>
 
-        <div class="row mt-5 text-end ">
+        <div class="mt-5 text-end">
             <a href="{{route('index', $filter == 1 ? 0 : 1)}}">
-                <button class="btn btn-sm btn-light">Filter customers</button>
+                <span class="btn btn-sm btn-light">Filter customers</span>
             </a>
         </div>
 

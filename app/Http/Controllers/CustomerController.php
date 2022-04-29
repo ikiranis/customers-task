@@ -3,12 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CustomerFormRequest;
-use App\Http\Services\ExportCustomersService;
 use App\Http\Services\ImportCSVService;
-use App\Http\Services\SCVService;
 use App\Models\Customer;
 use Illuminate\Contracts\Foundation\Application;
-use Illuminate\Support\Facades\Log;
 
 class CustomerController extends Controller
 {
@@ -53,7 +50,7 @@ class CustomerController extends Controller
                 ->withErrors(['Cant create the customer ' . $e->getMessage()]);
         }
 
-        return redirect(route('customers.index'));
+        return redirect(route('index'));
     }
 
     /**
@@ -66,7 +63,7 @@ class CustomerController extends Controller
     {
         $customer = Customer::whereId($id)->first();
 
-        return view('payments/index', compact('customer'));
+        return view('payments.index', compact('customer'));
     }
 
     /**
@@ -79,7 +76,7 @@ class CustomerController extends Controller
     {
         $customer = Customer::findOrFail($id);
 
-        return view('customers/edit', compact('customer'));
+        return view('customers.edit', compact('customer'));
     }
 
     /**
@@ -103,7 +100,7 @@ class CustomerController extends Controller
                 ->withErrors(['Cant update the customer ' . $e->getMessage()]);
         }
 
-        return redirect(route('customers.index'));
+        return redirect(route('index'));
     }
 
     /**
@@ -123,12 +120,18 @@ class CustomerController extends Controller
                 ->withErrors(['Cant delete the customer ' . $e->getMessage()]);
         }
 
-        return redirect(route('customers.index'));
+        return redirect(route('index'));
     }
 
-
+    /**
+     * Start the import of CSV file
+     *
+     * @return Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
     public function importPayments() {
-        $importSCV = new ImportCSVService();
+        $importSCV = new ImportCSVService('file.scv');
         $importSCV->import();
+
+        return redirect()->back()->with('message', 'Importing CSV file. Refresh page after a while to see the changes!');
     }
 }
