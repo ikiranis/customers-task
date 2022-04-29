@@ -127,13 +127,11 @@ class CustomerController extends Controller
 
 
     public function importPayments() {
-        Log::error("IMPOOOORT");
         $importSCV = new SCVService();
         $importSCV->import();
     }
 
     public function exportCustomers() {
-        Log::error("HELLOO");
         $export = new ExportCustomers('export.csv');
         $export->export();
     }
