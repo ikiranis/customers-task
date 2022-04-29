@@ -16,6 +16,8 @@ You can install mysql on docker (https://github.com/ikiranis/mysql-server-docker
 
 - Give write privileges to ``storage`` folder
 
+- Run migrations ``php artisan migrate``. Or ``php artisan migrate --seed``, to insert some customers.
+
 - Run the app in development mode
 
 ```
