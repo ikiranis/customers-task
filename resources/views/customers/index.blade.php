@@ -3,10 +3,15 @@
 @section('content')
 
     <div class="container">
-
         <div class="row mt-5 col-4 mx-auto">
             <a href="{{route('customers.create')}}">
                 <button class="btn btn-success w-100">Add Customer</button>
+            </a>
+        </div>
+
+        <div class="row mt-5 text-end ">
+            <a href="{{route('index', $filter == 1 ? 0 : 1)}}">
+                <button class="btn btn-sm btn-light">Filter customers</button>
             </a>
         </div>
 
@@ -18,16 +23,21 @@
                         <th scope="col">Id</th>
                         <th scope="col">Name</th>
                         <th scope="col">Email</th>
+                        <th scope="col" class="text-center">Lifetime revenue</th>
+                        <th scope="col" class="text-center">Total transactions</th>
                         <th scope="col" class="text-center">Actions</th>
                     </tr>
                     </thead>
                     <tbody>
 
                     @foreach($customers as $customer)
+                        @if($customer->payments()->count() || $filter)
                         <tr>
                             <td><a href="{{route('customers.edit', $customer->id)}}">{{$customer->id}}</a></td>
                             <td>{{ $customer->name }}</td>
                             <td>{{ $customer->email }}</td>
+                            <td class="text-center">{{ $customer->payments()->sum('amount') }}</td>
+                            <td class="text-center">{{ $customer->payments()->count() }}</td>
                             <td class="row text-center">
                                 @if($customer->payments()->count())
                                     <div class="col-6">
@@ -51,11 +61,11 @@
 
                             </td>
                         </tr>
+                        @endif
                     @endforeach
 
                     </tbody>
                 </table>
-
 
                 <div class="row mt-5 col-4 mx-auto">
                     <a href="{{route('importPayments')}}">

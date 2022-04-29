@@ -34,7 +34,7 @@
                 </div>
 
                 <div class="row mt-5 col-4 mx-auto">
-                    <a href="{{route('customers.index')}}">
+                    <a href="{{route('index')}}">
                         <button class="btn btn-info w-100">Return to customers index</button>
                     </a>
                 </div>

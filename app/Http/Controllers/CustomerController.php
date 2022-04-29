@@ -16,11 +16,11 @@ class CustomerController extends Controller
      *
      * @return Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
-    public function index()
+    public function index($filter = true)
     {
         $customers = Customer::all();
 
-        return view('customers.index', compact(['customers']));
+        return view('customers.index', compact(['customers', 'filter']));
     }
 
     /**
