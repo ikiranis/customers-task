@@ -10,7 +10,7 @@
 
 - Setup a mysql database and copy ``.env.example`` file to ``.env``.
 
-- Set the mysql credential in ``.env`` file.
+- Set the mysql credentials in ``.env`` file.
 
 You can install mysql on docker (https://github.com/ikiranis/mysql-server-docker)
 
